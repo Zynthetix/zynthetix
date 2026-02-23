@@ -1,156 +1,463 @@
-import Nav from "@/components/Nav";
-import Link from "next/link";
-import { Terminal, Mic, Download, ArrowRight, Check } from "lucide-react";
+import HeroText from '@/components/HeroText';
+import Nav from '@/components/Nav';
+import {
+  ArrowRight,
+  Check,
+  Download,
+  Github,
+  Layers,
+  Lock,
+  Mic,
+  Terminal,
+  Zap,
+} from 'lucide-react';
+import Link from 'next/link';
 
 export default function Home() {
   return (
     <>
       <Nav />
-      <main className="max-w-5xl mx-auto px-6">
-        {/* Hero */}
-        <section className="pt-32 pb-24 border-b border-[#2a2a2e]">
-          <div className="flex flex-col gap-6 max-w-2xl">
-            <div className="flex items-center gap-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#7c5cbf]" />
-              <p className="text-xs font-medium tracking-widest text-[#7c5cbf] uppercase">
-                Zynthetix
+      <main>
+        {/* ─── Hero ──────────────────────────────────────────────────── */}
+        <section
+          className="relative overflow-hidden dot-grid"
+          style={{
+            borderBottom: '1px solid var(--border)',
+            minHeight: '88vh',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <div
+            className="hero-orb"
+            style={{ top: '-120px', left: '-80px', opacity: 0.9 }}
+          />
+          <div
+            className="hero-orb"
+            style={{
+              top: '60px',
+              right: '-200px',
+              width: '480px',
+              height: '480px',
+              opacity: 0.5,
+            }}
+          />
+
+          <div className="max-w-6xl mx-auto px-6 py-32 w-full">
+            <div className="max-w-3xl">
+              <div className="flex items-center gap-3 mb-8 fade-up fade-up-1">
+                <div className="pulse-dot" />
+                <span className="tag">
+                  Open source · macOS · <HeroText />
+                </span>
+              </div>
+
+              <h1
+                className="fade-up fade-up-2 mb-7"
+                style={{
+                  fontFamily: "'Inter', -apple-system, sans-serif",
+                  fontWeight: 800,
+                  fontSize: 'clamp(48px, 6.5vw, 80px)',
+                  color: 'var(--text)',
+                  letterSpacing: '-0.03em',
+                  lineHeight: '1.04',
+                }}
+              >
+                Software that
+                <br />
+                <span style={{ color: 'var(--text)' }}>thinks, listens,</span>
+                <br />
+                and acts.
+              </h1>
+
+              <p
+                className="fade-up fade-up-3 mb-10 leading-relaxed"
+                style={{
+                  fontSize: '18px',
+                  color: 'var(--text2)',
+                  maxWidth: '520px',
+                }}
+              >
+                Focused AI-native tools for macOS. Runs 100% locally on your
+                machine. No API keys. No subscriptions. No data leaves your
+                device.
               </p>
+
+              {/* Product mini-cards */}
+              <div
+                className="grid grid-cols-1 sm:grid-cols-2 gap-4 fade-up fade-up-4"
+                style={{ maxWidth: '560px' }}
+              >
+                {[
+                  {
+                    icon: <Terminal size={15} />,
+                    name: 'AutoAgent',
+                    version: 'v0.2.1',
+                    desc: 'Agentic terminal cockpit for AI-assisted dev.',
+                    dmg: 'https://github.com/Zynthetix/zynthetix-autoagent/releases/latest',
+                    href: '/autoagent',
+                  },
+                  {
+                    icon: <Mic size={15} />,
+                    name: 'Voice',
+                    version: 'v2.0.2',
+                    desc: 'Local speech-to-text, system-wide.',
+                    dmg: 'https://github.com/Zynthetix/zynthetix-voice/releases/latest',
+                    href: '/voice',
+                  },
+                ].map(({ icon, name, version, desc, dmg, href }) => (
+                  <div
+                    key={name}
+                    className="card-glow rounded-xl p-5 flex flex-col gap-3"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span style={{ color: 'var(--text)' }}>{icon}</span>
+                      <span
+                        style={{
+                          fontWeight: 600,
+                          color: 'var(--text)',
+                          fontSize: '14px',
+                        }}
+                      >
+                        {name}
+                      </span>
+                      <span className="tag" style={{ marginLeft: 'auto' }}>
+                        {version}
+                      </span>
+                    </div>
+                    <p
+                      style={{
+                        fontSize: '12px',
+                        color: 'var(--text2)',
+                        lineHeight: '1.65',
+                      }}
+                    >
+                      {desc}
+                    </p>
+                    <div className="flex items-center gap-2 mt-auto">
+                      <a
+                        href={dmg}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-primary"
+                        style={{ fontSize: '11px', padding: '6px 12px' }}
+                      >
+                        <Download size={12} /> Download
+                      </a>
+                      <Link
+                        href={href}
+                        className="btn-ghost"
+                        style={{ fontSize: '11px', padding: '6px 12px' }}
+                      >
+                        Learn more <ArrowRight size={11} />
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div
+                className="flex items-center gap-8 mt-12 fade-up fade-up-5"
+                style={{
+                  borderTop: '1px solid var(--border)',
+                  paddingTop: '32px',
+                }}
+              >
+                {[
+                  { val: '100%', label: 'Local processing' },
+                  { val: '2', label: 'macOS products' },
+                  { val: 'MIT', label: 'Open source' },
+                ].map(({ val, label }) => (
+                  <div key={label}>
+                    <div
+                      style={{
+                        fontFamily: "'Inter', -apple-system, sans-serif",
+                        fontWeight: 700,
+                        fontSize: '22px',
+                        color: 'var(--text)',
+                        lineHeight: 1.1,
+                      }}
+                    >
+                      {val}
+                    </div>
+                    <div
+                      className="font-mono mt-1"
+                      style={{
+                        fontSize: '11px',
+                        color: 'var(--text3)',
+                        letterSpacing: '0.06em',
+                      }}
+                    >
+                      {label}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <h1 className="text-5xl font-semibold tracking-tight text-[#e8e8ea] leading-[1.1]">
-              Tools built for developers working with AI agents.
-            </h1>
-            <p className="text-[#5a5a65] text-xl leading-relaxed max-w-xl font-light">
-              We make focused macOS applications that fit cleanly into an AI-assisted
-              development workflow — no clutter, no subscriptions.
-            </p>
           </div>
         </section>
 
-        {/* Products */}
-        <section className="py-24 border-b border-[#2a2a2e]">
-          <div className="flex items-center gap-3 mb-12">
-            <span className="w-1 h-1 rounded-full bg-[#3a3a3f]" />
-            <p className="text-xs font-medium tracking-widest text-[#5a5a65] uppercase">
-              Products
-            </p>
-          </div>
+        {/* ─── Products ──────────────────────────────────────────────── */}
+        <section
+          className="max-w-6xl mx-auto px-6 py-24"
+          style={{ borderBottom: '1px solid var(--border)' }}
+        >
+          <div className="section-label mb-12">Products</div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* AutoAgent Card */}
-            <div className="group relative border border-[#2a2a2e] bg-[#161618]/50 p-8 rounded-xl hover:border-[#3a3a3f] transition-all duration-300">
-              <div className="absolute top-8 right-8 text-[#2a2a2e] group-hover:text-[#3a3a3f] transition-colors">
-                <Terminal size={32} strokeWidth={1} />
-              </div>
-
-              <div className="flex flex-col h-full gap-6">
-                <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <p className="text-[10px] font-medium tracking-widest text-[#7c5cbf] uppercase">
-                      macOS • Open Source
-                    </p>
-                    <span className="text-[10px] font-mono text-[#5a5a65] bg-[#2a2a2e]/50 px-1.5 py-0.5 rounded">
-                      v0.2.1
+            <div
+              className="card-glow hover-lift rounded-xl overflow-hidden"
+              style={{ minHeight: '480px' }}
+            >
+              <div
+                className="font-mono relative overflow-hidden"
+                style={{
+                  background: '#0A0A0D',
+                  borderBottom: '1px solid var(--border)',
+                  padding: '20px 24px',
+                  height: '200px',
+                }}
+              >
+                <div className="flex items-center gap-2 mb-4">
+                  <div
+                    className="w-3 h-3 rounded-full"
+                    style={{ background: 'var(--border2)' }}
+                  />
+                  <div
+                    className="w-3 h-3 rounded-full"
+                    style={{ background: 'var(--border)' }}
+                  />
+                  <div
+                    className="w-3 h-3 rounded-full"
+                    style={{ background: 'var(--border2)' }}
+                  />
+                  <span
+                    className="ml-3 font-mono"
+                    style={{ fontSize: '10px', color: 'var(--text3)' }}
+                  >
+                    zynthetix-autoagent — bash
+                  </span>
+                </div>
+                <div style={{ fontSize: '11px', lineHeight: '1.8' }}>
+                  <div className="term-line" style={{ color: 'var(--text3)' }}>
+                    <span style={{ color: 'var(--text2)' }}>→</span>{' '}
+                    <span style={{ color: 'var(--text)' }}>claude</span>
+                    <span style={{ color: 'var(--text2)' }}>
+                      {' '}
+                      &quot;refactor auth module&quot;
                     </span>
                   </div>
-                  <h2 className="text-2xl font-semibold text-[#e8e8ea] tracking-tight">
-                    AutoAgent
-                  </h2>
+                  <div className="term-line" style={{ color: 'var(--text3)' }}>
+                    <span style={{ color: 'var(--text2)' }}>◆</span> Analyzing
+                    24 files…
+                  </div>
+                  <div className="term-line" style={{ color: 'var(--text3)' }}>
+                    <span style={{ color: 'var(--text2)' }}>✓</span> Modified{' '}
+                    <span style={{ color: 'var(--text2)' }}>
+                      src/auth/handler.ts
+                    </span>
+                  </div>
+                  <div className="term-line" style={{ color: 'var(--text3)' }}>
+                    <span style={{ color: 'var(--text2)' }}>✓</span> Tests
+                    passing (18/18)
+                  </div>
+                  <div className="term-line" style={{ color: 'var(--text2)' }}>
+                    <span className="cursor-blink" />
+                  </div>
                 </div>
-
-                <p className="text-[#9a9a9f] text-sm leading-relaxed max-w-sm">
-                  The cockpit for AI-assisted development. Manage multiple AI agent
-                  terminal sessions in a split-grid workspace — without the chaos.
+              </div>
+              <div className="p-8">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="tag-accent tag">macOS</span>
+                      <span className="tag">Open source</span>
+                    </div>
+                    <h2
+                      style={{
+                        fontFamily: "'Inter', -apple-system, sans-serif",
+                        fontWeight: 700,
+                        fontSize: '24px',
+                        color: 'var(--text)',
+                        letterSpacing: '-0.02em',
+                      }}
+                    >
+                      AutoAgent
+                    </h2>
+                  </div>
+                  <Terminal size={20} style={{ color: 'var(--border2)' }} />
+                </div>
+                <p
+                  className="mb-6"
+                  style={{
+                    fontSize: '13px',
+                    color: 'var(--text2)',
+                    lineHeight: '1.7',
+                    maxWidth: '360px',
+                  }}
+                >
+                  The cockpit for AI-assisted development. Manage multiple AI
+                  agent terminal sessions in a split-grid layout — without the
+                  chaos.
                 </p>
-
-                <ul className="space-y-3 mt-2">
+                <ul className="space-y-2.5 mb-8">
                   {[
-                    "Terminal grid layouts (Solo → 4×4)",
-                    "Persistent project tabs",
-                    "Real PTY sessions with 256-colour",
-                    "⌘1–9 keyboard shortcuts"
+                    'Real PTY sessions with 256-colour support',
+                    'Terminal grid: Solo → Dual → 2×2 → 4×4',
+                    'Persistent project tabs + git worktrees',
+                    'Kanban, context panel, roadmap built in',
                   ].map((f) => (
-                    <li key={f} className="flex items-center gap-3 text-sm text-[#5a5a65]">
-                      <Check size={14} className="text-[#7c5cbf] flex-shrink-0" />
+                    <li
+                      key={f}
+                      className="flex items-center gap-3"
+                      style={{ fontSize: '12px', color: 'var(--text3)' }}
+                    >
+                      <Check
+                        size={13}
+                        style={{ color: 'var(--text)', flexShrink: 0 }}
+                      />
                       {f}
                     </li>
                   ))}
                 </ul>
-
-                <div className="flex items-center gap-4 mt-auto pt-4">
+                <div className="flex items-center gap-3">
                   <a
-                    href="https://github.com/Zynthetix/zynthetix-autoagent/releases/latest"
+                    href="https://github.com/Zynthetix/zynthetix-autoagent"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-[#7c5cbf] hover:bg-[#6b4dac] text-white text-sm font-medium px-4 py-2.5 rounded-lg transition-all active:scale-[0.98]"
+                    className="btn-primary"
+                    style={{ fontSize: '12px', padding: '8px 16px' }}
                   >
-                    <Download size={16} />
-                    Download
+                    <Github size={13} /> View on GitHub
                   </a>
                   <Link
                     href="/autoagent"
-                    className="flex items-center gap-2 text-[#9a9a9f] hover:text-[#e8e8ea] text-sm font-medium transition-colors"
+                    className="btn-ghost"
+                    style={{ fontSize: '12px', padding: '8px 16px' }}
                   >
-                    Learn more <ArrowRight size={16} />
+                    Learn more <ArrowRight size={13} />
                   </Link>
                 </div>
               </div>
             </div>
 
             {/* Voice Card */}
-            <div className="group relative border border-[#2a2a2e] bg-[#161618]/50 p-8 rounded-xl hover:border-[#3a3a3f] transition-all duration-300">
-              <div className="absolute top-8 right-8 text-[#2a2a2e] group-hover:text-[#3a3a3f] transition-colors">
-                <Mic size={32} strokeWidth={1} />
-              </div>
-
-              <div className="flex flex-col h-full gap-6">
-                <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <p className="text-[10px] font-medium tracking-widest text-[#7c5cbf] uppercase">
-                      macOS • Apple Silicon
-                    </p>
-                    <span className="text-[10px] font-mono text-[#5a5a65] bg-[#2a2a2e]/50 px-1.5 py-0.5 rounded">
-                      v1.1.0
-                    </span>
+            <div
+              className="card-glow hover-lift rounded-xl overflow-hidden"
+              style={{ minHeight: '480px' }}
+            >
+              <div
+                className="relative overflow-hidden"
+                style={{
+                  background: '#0A0A0D',
+                  borderBottom: '1px solid var(--border)',
+                  padding: '20px 24px',
+                  height: '200px',
+                }}
+              >
+                <div className="flex items-center justify-center h-full">
+                  <div
+                    className="flex items-center gap-4 px-6 py-4 rounded-[28px]"
+                    style={{
+                      background: 'var(--s1)',
+                      border: '1px solid var(--border2)',
+                    }}
+                  >
+                    <div style={{ color: 'var(--text)' }}>
+                      <Mic size={16} />
+                    </div>
+                    <div className="wave-container">
+                      {Array.from({ length: 12 }).map((_, i) => (
+                        <div key={i} className="wave-bar" />
+                      ))}
+                    </div>
+                    <div
+                      className="font-mono"
+                      style={{ fontSize: '10px', color: 'var(--text3)' }}
+                    >
+                      recording…
+                    </div>
                   </div>
-                  <h2 className="text-2xl font-semibold text-[#e8e8ea] tracking-tight">
-                    Voice
-                  </h2>
                 </div>
-
-                <p className="text-[#9a9a9f] text-sm leading-relaxed max-w-sm">
-                  Press a hotkey and speak — your words are typed wherever your cursor
-                  is. Powered by Deepgram nova-3. Works in any app.
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background:
+                      'radial-gradient(ellipse at center, rgba(200,200,200,0.06) 0%, transparent 70%)',
+                  }}
+                />
+              </div>
+              <div className="p-8">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="tag-accent tag">Apple Silicon</span>
+                      <span className="tag">v2.0.2</span>
+                    </div>
+                    <h2
+                      style={{
+                        fontFamily: "'Inter', -apple-system, sans-serif",
+                        fontWeight: 700,
+                        fontSize: '24px',
+                        color: 'var(--text)',
+                        letterSpacing: '-0.02em',
+                      }}
+                    >
+                      Voice
+                    </h2>
+                  </div>
+                  <Mic size={20} style={{ color: 'var(--border2)' }} />
+                </div>
+                <p
+                  className="mb-6"
+                  style={{
+                    fontSize: '13px',
+                    color: 'var(--text2)',
+                    lineHeight: '1.7',
+                    maxWidth: '360px',
+                  }}
+                >
+                  Press a hotkey and speak — your words are typed wherever your
+                  cursor is. Powered by whisper.cpp running locally. Zero
+                  internet required.
                 </p>
-
-                <ul className="space-y-3 mt-2">
+                <ul className="space-y-2.5 mb-8">
                   {[
-                    "Double-tap Right ⌥ to toggle",
-                    "Floating pill with live waveform",
-                    "Text snippet expansion",
-                    "Menu bar — no Dock icon"
+                    'Double-tap Right ⌥ or hold for push-to-talk',
+                    'whisper.cpp with Metal GPU — fully offline',
+                    'Floating pill widget with live waveform',
+                    'Text snippet expansion + transcription history',
                   ].map((f) => (
-                    <li key={f} className="flex items-center gap-3 text-sm text-[#5a5a65]">
-                      <Check size={14} className="text-[#7c5cbf] flex-shrink-0" />
+                    <li
+                      key={f}
+                      className="flex items-center gap-3"
+                      style={{ fontSize: '12px', color: 'var(--text3)' }}
+                    >
+                      <Check
+                        size={13}
+                        style={{ color: 'var(--text)', flexShrink: 0 }}
+                      />
                       {f}
                     </li>
                   ))}
                 </ul>
-
-                <div className="flex items-center gap-4 mt-auto pt-4">
+                <div className="flex items-center gap-3">
                   <a
                     href="https://github.com/Zynthetix/zynthetix-voice/releases/latest"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-[#7c5cbf] hover:bg-[#6b4dac] text-white text-sm font-medium px-4 py-2.5 rounded-lg transition-all active:scale-[0.98]"
+                    className="btn-primary"
+                    style={{ fontSize: '12px', padding: '8px 16px' }}
                   >
-                    <Download size={16} />
-                    Download
+                    <Download size={13} /> Download DMG
                   </a>
                   <Link
                     href="/voice"
-                    className="flex items-center gap-2 text-[#9a9a9f] hover:text-[#e8e8ea] text-sm font-medium transition-colors"
+                    className="btn-ghost"
+                    style={{ fontSize: '12px', padding: '8px 16px' }}
                   >
-                    Learn more <ArrowRight size={16} />
+                    Learn more <ArrowRight size={13} />
                   </Link>
                 </div>
               </div>
@@ -158,39 +465,108 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Philosophy */}
-        <section className="py-24 border-b border-[#2a2a2e]">
-          <div className="flex items-center gap-3 mb-12">
-            <span className="w-1 h-1 rounded-full bg-[#3a3a3f]" />
-            <p className="text-xs font-medium tracking-widest text-[#5a5a65] uppercase">
-              Philosophy
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        {/* ─── Philosophy ────────────────────────────────────────────── */}
+        <section
+          className="max-w-6xl mx-auto px-6 py-24"
+          style={{ borderBottom: '1px solid var(--border)' }}
+        >
+          <div className="section-label mb-12">Philosophy</div>
+
+          <div
+            className="grid grid-cols-1 md:grid-cols-3 gap-px rounded-xl overflow-hidden"
+            style={{
+              border: '1px solid var(--border)',
+              background: 'var(--border)',
+            }}
+          >
             {[
-              { title: "Focused", body: "Every product does one thing well. No dashboards, no enterprise bloat, no feature creep for its own sake." },
-              { title: "Open", body: "Free to download. Source available. No accounts required. No usage tracking. Your data stays yours." },
-              { title: "Native", body: "Built for macOS. Feels like it belongs there — fast, quiet, minimal. Respects system resources." },
-            ].map(({ title, body }) => (
-              <div key={title} className="flex flex-col gap-4">
-                <h3 className="text-lg font-medium text-[#e8e8ea]">{title}</h3>
-                <p className="text-sm text-[#9a9a9f] leading-relaxed">{body}</p>
+              {
+                icon: <Zap size={18} />,
+                title: 'Focused',
+                body: "Every product does exactly one thing, done properly. No dashboards for dashboards' sake. No enterprise bloat.",
+              },
+              {
+                icon: <Lock size={18} />,
+                title: 'Offline-first',
+                body: 'Your voice stays on your machine. Your code stays on your machine. No telemetry. No usage tracking. No accounts.',
+              },
+              {
+                icon: <Layers size={18} />,
+                title: 'Native',
+                body: 'Built for macOS. Uses Metal, system fonts, OS-level APIs. Feels like it belongs there — fast, lightweight, unobtrusive.',
+              },
+            ].map(({ icon, title, body }) => (
+              <div
+                key={title}
+                className="p-10 bg-s1 hover-brutal"
+                style={{ transition: 'all 300ms' }}
+              >
+                <div
+                  className="w-9 h-9 rounded-md flex items-center justify-center mb-6"
+                  style={{
+                    background: 'var(--s2)',
+                    border: '1px solid var(--border2)',
+                    color: 'var(--text)',
+                  }}
+                >
+                  {icon}
+                </div>
+                <h3
+                  className="mb-3"
+                  style={{
+                    fontFamily: "'Inter', -apple-system, sans-serif",
+                    fontWeight: 700,
+                    fontSize: '17px',
+                    color: 'var(--text)',
+                    letterSpacing: '-0.01em',
+                  }}
+                >
+                  {title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: '13px',
+                    color: 'var(--text2)',
+                    lineHeight: '1.7',
+                  }}
+                >
+                  {body}
+                </p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="py-12 flex items-center justify-between text-[#5a5a65] text-xs font-medium">
-          <span>© {new Date().getFullYear()} Zynthetix</span>
-          <a
-            href="https://github.com/Zynthetix"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#e8e8ea] transition-colors duration-200"
-          >
-            github.com/Zynthetix
-          </a>
+        {/* ─── Footer ──────────────────────────────────────────────── */}
+        <footer
+          className="max-w-6xl mx-auto px-6 py-10 flex items-center justify-between"
+          style={{ color: 'var(--text3)', fontSize: '12px' }}
+        >
+          <span className="font-mono">
+            © {new Date().getFullYear()} Zynthetix
+          </span>
+          <div className="flex items-center gap-6">
+            <Link
+              href="/voice"
+              className="transition-colors duration-200 text-[var(--text3)] hover:text-[var(--text)]"
+            >
+              Voice
+            </Link>
+            <Link
+              href="/autoagent"
+              className="transition-colors duration-200 text-[var(--text3)] hover:text-[var(--text)]"
+            >
+              AutoAgent
+            </Link>
+            <a
+              href="https://github.com/Zynthetix"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 transition-colors duration-200 text-[var(--text3)] hover:text-[var(--text)]"
+            >
+              <Github size={13} /> GitHub
+            </a>
+          </div>
         </footer>
       </main>
     </>

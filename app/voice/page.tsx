@@ -1,299 +1,661 @@
-import Nav from "@/components/Nav";
+import Nav from '@/components/Nav';
 import {
-  Mic,
   Command,
-  Type,
-  History,
-  Globe,
-  Wand2,
   Download,
   Github,
-  Check,
-  Cpu,
+  Globe,
+  HardDrive,
+  History,
   Keyboard,
+  Mic,
   ShieldAlert,
-  HardDrive
-} from "lucide-react";
+  Type,
+  Wand2,
+} from 'lucide-react';
 
 export const metadata = {
-  title: "Voice — Zynthetix",
-  description: "A WisprFlow-like macOS speech-to-text app. Runs 100% locally using whisper.cpp — no API key, no internet, no subscription required.",
+  title: 'Voice — Zynthetix',
+  description:
+    'Local speech-to-text for macOS. Press a hotkey, speak, and your words appear wherever your cursor is. Powered by whisper.cpp — no internet required.',
 };
 
 export default function VoicePage() {
   return (
     <>
       <Nav />
-      <main className="max-w-5xl mx-auto px-6">
+      <main>
+        {/* ─── Hero ──────────────────────────────────────────────────── */}
+        <section
+          className="relative overflow-hidden dot-grid"
+          style={{
+            borderBottom: '1px solid var(--border)',
+            minHeight: '80vh',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <div
+            className="hero-orb"
+            style={{ top: '-80px', left: '-60px', opacity: 0.8 }}
+          />
+          <div
+            className="hero-orb"
+            style={{
+              bottom: '-160px',
+              right: '-120px',
+              width: '400px',
+              height: '400px',
+              opacity: 0.4,
+            }}
+          />
 
-        {/* Hero */}
-        <section className="pt-32 pb-20 border-b border-[#2a2a2e]">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#7c5cbf]" />
-            <p className="text-xs font-medium tracking-widest text-[#7c5cbf] uppercase">Voice</p>
-            <span className="text-[10px] font-mono text-[#5a5a65] bg-[#2a2a2e]/50 px-2 py-0.5 rounded ml-2">v2.0.0</span>
-          </div>
-          <h1 className="text-5xl font-semibold tracking-tight text-[#e8e8ea] leading-[1.1] max-w-3xl mb-8">
-            Press a hotkey. Speak. Done.
-          </h1>
-          <p className="text-[#9a9a9f] text-xl leading-relaxed max-w-2xl mb-10 font-light">
-            A WisprFlow-like macOS speech-to-text app. Runs 100% locally using whisper.cpp — no API key, no internet, no subscription required.
-          </p>
-          <div className="flex flex-wrap items-center gap-4">
-            <a
-              href="https://github.com/Zynthetix/zynthetix-voice/releases/download/v2.0.0/Zynthetix.Voice-2.0.0-arm64.dmg"
-              className="flex items-center gap-2 bg-[#7c5cbf] hover:bg-[#6b4dac] active:scale-[0.98] text-white text-sm font-medium px-5 py-3 rounded-lg transition-all shadow-sm"
-            >
-              <Download size={18} />
-              Download for macOS
-            </a>
-            <a
-              href="https://github.com/Zynthetix/zynthetix-voice"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-[#9a9a9f] hover:text-[#e8e8ea] bg-[#2a2a2e]/30 hover:bg-[#2a2a2e]/60 border border-[#2a2a2e] text-sm font-medium px-5 py-3 rounded-lg transition-all"
-            >
-              <Github size={18} />
-              View on GitHub
-            </a>
-          </div>
-        </section>
+          <div className="max-w-6xl mx-auto px-6 py-28 w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              {/* Left: copy */}
+              <div>
+                <div className="flex items-center gap-3 mb-7 fade-up fade-up-1">
+                  <span className="tag-accent tag">Voice</span>
+                  <span className="tag">v2.0.2</span>
+                  <span className="tag">Apple Silicon</span>
+                </div>
+                <h1
+                  className="mb-6 fade-up fade-up-2"
+                  style={{
+                    fontFamily: "'Inter', -apple-system, sans-serif",
+                    fontWeight: 800,
+                    fontSize: 'clamp(40px, 5vw, 64px)',
+                    color: 'var(--text)',
+                    letterSpacing: '-0.03em',
+                    lineHeight: '1.06',
+                  }}
+                >
+                  Press a hotkey.
+                  <br />
+                  Speak. Done.
+                </h1>
+                <p
+                  className="mb-9 fade-up fade-up-3 leading-relaxed"
+                  style={{
+                    fontSize: '17px',
+                    color: 'var(--text2)',
+                    maxWidth: '440px',
+                  }}
+                >
+                  Local speech-to-text for macOS powered by whisper.cpp. No API
+                  key. No internet. No subscription. Works in every app.
+                </p>
+                <div className="flex flex-wrap gap-3 fade-up fade-up-4">
+                  <a
+                    href="https://github.com/Zynthetix/zynthetix-voice/releases/download/v2.0.2/Zynthetix.Voice-2.0.2-arm64.dmg"
+                    className="btn-primary"
+                  >
+                    <Download size={15} /> Download DMG — free
+                  </a>
+                  <a
+                    href="https://github.com/Zynthetix/zynthetix-voice"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-ghost"
+                  >
+                    <Github size={15} /> Source on GitHub
+                  </a>
+                </div>
+                <p
+                  className="font-mono mt-5 fade-up fade-up-5"
+                  style={{ fontSize: '11px', color: 'var(--text3)' }}
+                >
+                  Requires macOS 13 Ventura+ · Apple Silicon
+                </p>
+              </div>
 
-        {/* How it works */}
-        <section className="py-20 border-b border-[#2a2a2e]">
-          <div className="flex items-center gap-3 mb-10">
-            <span className="w-1 h-1 rounded-full bg-[#3a3a3f]" />
-            <p className="text-xs font-medium tracking-widest text-[#5a5a65] uppercase">How it works</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                step: "01",
-                icon: <Type size={24} />,
-                title: "Click anywhere",
-                body: "Put your cursor in any text field — browser, Slack, terminal, notes, anything."
-              },
-              {
-                step: "02",
-                icon: <Mic size={24} />,
-                title: "Double-tap Right ⌥",
-                body: "The floating pill appears and starts recording. Or hold Right ⌥ for push-to-talk."
-              },
-              {
-                step: "03",
-                icon: <Wand2 size={24} />,
-                title: "Paste instantly",
-                body: "Text is completely processed locally and injected straight into your cursor via clipboard paste."
-              },
-            ].map(({ step, icon, title, body }) => (
-              <div key={step} className="bg-[#161618]/30 border border-[#2a2a2e]/50 p-8 rounded-xl hover:border-[#3a3a3f] transition-all group relative overflow-hidden">
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="text-xs font-mono text-[#7c5cbf] border border-[#7c5cbf]/30 bg-[#7c5cbf]/10 px-2 py-1 rounded">
-                      {step}
-                    </span>
-                    <div className="text-[#5a5a65] group-hover:text-[#e8e8ea] transition-colors">
-                      {icon}
+              {/* Right: waveform widget mockup */}
+              <div className="fade-up fade-up-3 flex justify-center lg:justify-end">
+                <div className="relative">
+                  <div
+                    className="hero-orb"
+                    style={{
+                      top: '50%',
+                      left: '50%',
+                      width: '280px',
+                      height: '280px',
+                      transform: 'translate(-50%,-50%)',
+                      opacity: 0.25,
+                    }}
+                  />
+                  <div className="relative flex flex-col items-center gap-6">
+                    {/* Pill */}
+                    <div
+                      className="flex items-center gap-5 px-8 py-5 rounded-xl"
+                      style={{
+                        background: 'var(--s2)',
+                        border: '1px solid var(--border2)',
+                      }}
+                    >
+                      <div
+                        className="w-8 h-8 rounded-full flex items-center justify-center"
+                        style={{
+                          background: 'var(--s2)',
+                          border: '1px solid var(--border2)',
+                          color: 'var(--text)',
+                        }}
+                      >
+                        <Mic size={16} />
+                      </div>
+                      <div className="wave-container" style={{ gap: '3px' }}>
+                        {Array.from({ length: 16 }).map((_, i) => (
+                          <div
+                            key={i}
+                            className="wave-bar"
+                            style={{ width: '3px' }}
+                          />
+                        ))}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="pulse-dot" />
+                        <span
+                          className="font-mono"
+                          style={{ fontSize: '10px', color: 'var(--text3)' }}
+                        >
+                          listening
+                        </span>
+                      </div>
+                    </div>
+                    {/* Transcript bubble */}
+                    <div
+                      className="rounded-xl px-5 py-3 max-w-sm"
+                      style={{
+                        background: 'var(--s1)',
+                        border: '1px solid var(--border)',
+                      }}
+                    >
+                      <p
+                        className="font-mono"
+                        style={{
+                          fontSize: '12px',
+                          color: 'var(--text2)',
+                          lineHeight: '1.6',
+                        }}
+                      >
+                        <span style={{ color: 'var(--text3)' }}>▎</span>{' '}
+                        &quot;Open auth handler and refactor the token
+                        validation logic&quot;
+                        <span className="cursor-blink" />
+                      </p>
+                    </div>
+                    <div
+                      className="font-mono"
+                      style={{ fontSize: '10px', color: 'var(--text3)' }}
+                    >
+                      ↳ injected at cursor position
                     </div>
                   </div>
-                  <h3 className="text-lg font-medium text-[#e8e8ea] mb-3">{title}</h3>
-                  <p className="text-sm text-[#9a9a9f] leading-relaxed">{body}</p>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Features */}
-        <section className="py-20 border-b border-[#2a2a2e]">
-          <div className="flex items-center gap-3 mb-10">
-            <span className="w-1 h-1 rounded-full bg-[#3a3a3f]" />
-            <p className="text-xs font-medium tracking-widest text-[#5a5a65] uppercase">Features</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <HardDrive size={20} />,
-                title: "100% Local processing",
-                body: "Local speech-to-text via whisper.cpp. Fully offline processing — zero data leaves your machine. No API keys required."
-              },
-              {
-                icon: <Wand2 size={20} />,
-                title: "Floating pill widget",
-                body: "An always-on-top pill with an animated audio waveform shows your recording state."
-              },
-              {
-                icon: <Command size={20} />,
-                title: "Global hotkey",
-                body: "Double-tap Right ⌥ to toggle, or hold to push-to-talk. Works perfectly in every app."
-              },
-              {
-                icon: <Keyboard size={20} />,
-                title: "Text snippet expansion",
-                body: "Say a trigger word to magically insert pre-defined large blocks of text. Great for boilerplate."
-              },
-              {
-                icon: <History size={20} />,
-                title: "Dashboard interface",
-                body: "Review transcription history, configure snippets, view stats, and access settings via a local web interface."
-              },
-              {
-                icon: <Globe size={20} />,
-                title: "Multi-language support",
-                body: "Understands English, Spanish, French, German, Japanese, and numerous other languages seamlessly."
-              },
-            ].map(({ icon, title, body }) => (
-              <div key={title} className="flex flex-col gap-4 p-6 bg-[#161618]/30 border border-[#2a2a2e]/50 rounded-lg hover:border-[#3a3a3f] transition-all group">
-                <div className="text-[#7c5cbf] bg-[#7c5cbf]/10 w-10 h-10 flex items-center justify-center rounded-md mb-2 group-hover:scale-110 transition-transform">
-                  {icon}
-                </div>
-                <h3 className="text-base font-medium text-[#e8e8ea]">{title}</h3>
-                <p className="text-sm text-[#9a9a9f] leading-relaxed">{body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Models */}
-        <section className="py-20 border-b border-[#2a2a2e]">
-          <div className="flex items-center gap-3 mb-10">
-            <span className="w-1 h-1 rounded-full bg-[#3a3a3f]" />
-            <p className="text-xs font-medium tracking-widest text-[#5a5a65] uppercase">Selectable Models</p>
-          </div>
-
-          <div className="bg-[#161618]/30 border border-[#2a2a2e] rounded-xl p-8 mb-6">
-            <p className="text-[#9a9a9f] text-sm leading-relaxed mb-8">
-              Zynthetix Voice automatically downloads your selected Whisper model directly from HuggingFace on its first run. After that, everything runs 100% offline. Change models via Settings inside the tray menu.
-            </p>
-
-            <div className="overflow-x-auto border border-[#2a2a2e] rounded-lg bg-[#0f0f10]">
-              <table className="w-full text-left text-sm text-[#9a9a9f]">
-                <thead className="bg-[#161618]/50 text-[#e8e8ea] border-b border-[#2a2a2e]">
-                  <tr>
-                    <th className="px-6 py-4 font-medium">Model</th>
-                    <th className="px-6 py-4 font-medium">Download Size</th>
-                    <th className="px-6 py-4 font-medium">Processing Speed</th>
-                    <th className="px-6 py-4 font-medium">Accuracy</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[#2a2a2e]">
-                  <tr className="hover:bg-[#161618]/30 transition-colors">
-                    <td className="px-6 py-4 font-medium text-[#e8e8ea]">Tiny</td>
-                    <td className="px-6 py-4 font-mono text-xs">~75 MB</td>
-                    <td className="px-6 py-4">Fastest</td>
-                    <td className="px-6 py-4">Good</td>
-                  </tr>
-                  <tr className="hover:bg-[#161618]/30 transition-colors bg-[#7c5cbf]/5 relative">
-                    <td className="px-6 py-4 font-medium text-[#7c5cbf] flex items-center gap-2">Base <span className="bg-[#7c5cbf] text-white text-[9px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">Default</span></td>
-                    <td className="px-6 py-4 font-mono text-xs">~142 MB</td>
-                    <td className="px-6 py-4">Fast</td>
-                    <td className="px-6 py-4">Better</td>
-                  </tr>
-                  <tr className="hover:bg-[#161618]/30 transition-colors">
-                    <td className="px-6 py-4 font-medium text-[#e8e8ea]">Small</td>
-                    <td className="px-6 py-4 font-mono text-xs">~462 MB</td>
-                    <td className="px-6 py-4">Medium</td>
-                    <td className="px-6 py-4">Great</td>
-                  </tr>
-                  <tr className="hover:bg-[#161618]/30 transition-colors">
-                    <td className="px-6 py-4 font-medium text-[#e8e8ea]">Medium</td>
-                    <td className="px-6 py-4 font-mono text-xs">~1.5 GB</td>
-                    <td className="px-6 py-4">Slower</td>
-                    <td className="px-6 py-4">Best</td>
-                  </tr>
-                </tbody>
-              </table>
             </div>
           </div>
         </section>
 
-        {/* Setup */}
-        <section className="py-20 border-b border-[#2a2a2e]">
-          <div className="flex items-center gap-3 mb-10">
-            <span className="w-1 h-1 rounded-full bg-[#3a3a3f]" />
-            <p className="text-xs font-medium tracking-widest text-[#5a5a65] uppercase">Setup</p>
-          </div>
-
-          <div className="bg-[#161618]/30 border border-[#2a2a2e] rounded-xl p-8">
-            <ol className="space-y-8 relative before:absolute before:left-[19px] before:top-4 before:h-[calc(100%-32px)] before:w-px before:bg-[#2a2a2e]">
-              {[
-                ["Download & install", "Get the .dmg, open it, and drag the app to your /Applications folder. No Node.js or setup needed."],
-                ["First launch (Unsigned Build)", "Right-click Zynthetix Voice.app → Open. Click Open in the dialog to bypass macOS Gatekeeper."],
-                ["Download Model", "The app lives quietly in your menu bar (🎙 icon). On your very first transcription attempt, the app must download the base Whisper model (~142 MB)."],
-                ["Grant permissions", "Allow Microphone (to hear you speak) and Accessibility (to inject transcribed text) when requested inside your System Settings."],
-                ["Start dictating", "Click a text field anywhere, double-tap Right ⌥, speak naturally, and double-tap again. Text enters via clipboard."],
-              ].map(([step, desc], i) => (
-                <li key={step} className="flex items-start gap-6 relative">
-                  <span className="w-10 h-10 rounded-full bg-[#0f0f10] border border-[#2a2a2e] flex items-center justify-center text-xs font-mono text-[#9a9a9f] z-10 flex-shrink-0">
-                    {i + 1}
-                  </span>
-                  <div className="pt-2">
-                    <p className="text-base font-medium text-[#e8e8ea]">{step}</p>
-                    <p className="text-sm text-[#9a9a9f] mt-1 leading-relaxed">{desc}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        {/* Tech stack */}
-        <section className="py-20 border-b border-[#2a2a2e]">
-          <div className="flex items-center gap-3 mb-10">
-            <span className="w-1 h-1 rounded-full bg-[#3a3a3f]" />
-            <p className="text-xs font-medium tracking-widest text-[#5a5a65] uppercase">Architecture</p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-px bg-[#2a2a2e] rounded-lg overflow-hidden border border-[#2a2a2e]">
+        {/* ─── How it works ──────────────────────────────────────────── */}
+        <section
+          className="max-w-6xl mx-auto px-6 py-24"
+          style={{ borderBottom: '1px solid var(--border)' }}
+        >
+          <div className="section-label mb-12">How it works</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              ["Electron", "System tray & keybindings"],
-              ["whisper.cpp", "Local transcription engine"],
-              ["osascript", "Accessibility text injection"],
-              ["SQLite", "Stats & snippet memory"],
-              ["React + Vite", "Interface & Dashboard SPA"],
-              ["Express Server", "Local API endpoint (port 7789)"],
-            ].map(([name, desc]) => (
-              <div key={name} className="bg-[#161618]/50 px-6 py-5 hover:bg-[#1c1c1f] transition-colors">
-                <p className="text-sm font-medium text-[#e8e8ea] mb-1">{name}</p>
-                <p className="text-xs text-[#5a5a65]">{desc}</p>
+              {
+                step: '01',
+                icon: <Type size={18} />,
+                title: 'Click anywhere',
+                body: 'Put your cursor in any text field — browser, Slack, terminal, notes, code editor. Any app.',
+              },
+              {
+                step: '02',
+                icon: <Mic size={18} />,
+                title: 'Double-tap Right ⌥',
+                body: 'The floating pill appears and starts recording. Or hold Right ⌥ for push-to-talk mode.',
+              },
+              {
+                step: '03',
+                icon: <Wand2 size={18} />,
+                title: 'Text appears',
+                body: 'whisper.cpp processes locally in under 2 s and injects the transcription straight to your cursor via paste.',
+              },
+            ].map(({ step, icon, title, body }) => (
+              <div key={step} className="card-glow rounded-xl p-8">
+                <div className="flex items-center justify-between mb-6">
+                  <span className="tag-accent tag">{step}</span>
+                  <div style={{ color: 'var(--text)' }}>{icon}</div>
+                </div>
+                <h3
+                  style={{
+                    fontFamily: "'Inter', -apple-system, sans-serif",
+                    fontWeight: 700,
+                    fontSize: '16px',
+                    color: 'var(--text)',
+                    marginBottom: '10px',
+                    letterSpacing: '-0.01em',
+                  }}
+                >
+                  {title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: '13px',
+                    color: 'var(--text2)',
+                    lineHeight: '1.7',
+                  }}
+                >
+                  {body}
+                </p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Permissions */}
-        <section className="py-20 border-b border-[#2a2a2e]">
-          <div className="flex items-center gap-3 mb-10">
-            <span className="w-1 h-1 rounded-full bg-[#3a3a3f]" />
-            <p className="text-xs font-medium tracking-widest text-[#5a5a65] uppercase">Permissions required</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#2a2a2e] rounded-lg overflow-hidden border border-[#2a2a2e]">
+        {/* ─── Features ──────────────────────────────────────────────── */}
+        <section
+          className="max-w-6xl mx-auto px-6 py-24"
+          style={{ borderBottom: '1px solid var(--border)' }}
+        >
+          <div className="section-label mb-12">Features</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
-              ["Microphone", "Capture your voice while recording via the OS."],
-              ["Accessibility", "Simulate Cmd+V keyboard strokes to paste text dynamically into other applications."],
-            ].map(([perm, reason]) => (
-              <div key={perm} className="bg-[#161618]/50 px-6 py-5 hover:bg-[#1c1c1f] transition-colors flex items-start gap-4">
-                <ShieldAlert size={16} className="text-[#5a5a65] mt-0.5 flex-shrink-0" />
-                <div>
-                  <p className="text-sm font-medium text-[#e8e8ea] mb-1">{perm}</p>
-                  <p className="text-sm text-[#5a5a65]">{reason}</p>
+              {
+                icon: <HardDrive size={17} />,
+                title: '100% local processing',
+                body: 'whisper.cpp runs on Metal GPU. Zero data leaves your machine. No API keys required.',
+              },
+              {
+                icon: <Wand2 size={17} />,
+                title: 'Floating pill widget',
+                body: 'Always-on-top pill shows an animated waveform while you speak. Disappears when done.',
+              },
+              {
+                icon: <Command size={17} />,
+                title: 'Global hotkey',
+                body: 'Double-tap Right ⌥ to toggle, or hold for push-to-talk. Works in every app, every time.',
+              },
+              {
+                icon: <Keyboard size={17} />,
+                title: 'Snippet expansion',
+                body: 'Say a trigger word to instantly insert pre-defined blocks of text. Perfect for boilerplate.',
+              },
+              {
+                icon: <History size={17} />,
+                title: 'Transcription history',
+                body: 'Every transcription is saved locally. Search, copy, and replay past recordings from the tray.',
+              },
+              {
+                icon: <Globe size={17} />,
+                title: 'Multi-language',
+                body: 'English, Spanish, French, German, Japanese and many more — whisper understands them all.',
+              },
+            ].map(({ icon, title, body }) => (
+              <div key={title} className="card-glow rounded-xl p-7">
+                <div
+                  className="w-9 h-9 rounded-md flex items-center justify-center mb-5"
+                  style={{
+                    background: 'var(--s2)',
+                    border: '1px solid var(--border2)',
+                    color: 'var(--text)',
+                  }}
+                >
+                  {icon}
+                </div>
+                <h3
+                  style={{
+                    fontFamily: "'Inter', -apple-system, sans-serif",
+                    fontWeight: 700,
+                    fontSize: '15px',
+                    color: 'var(--text)',
+                    marginBottom: '8px',
+                    letterSpacing: '-0.01em',
+                  }}
+                >
+                  {title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: '13px',
+                    color: 'var(--text2)',
+                    lineHeight: '1.7',
+                  }}
+                >
+                  {body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ─── Models ────────────────────────────────────────────────── */}
+        <section
+          className="max-w-6xl mx-auto px-6 py-24"
+          style={{ borderBottom: '1px solid var(--border)' }}
+        >
+          <div className="section-label mb-4">Selectable Models</div>
+          <p
+            className="mb-10"
+            style={{
+              fontSize: '13px',
+              color: 'var(--text2)',
+              maxWidth: '560px',
+              lineHeight: '1.7',
+            }}
+          >
+            Auto-downloaded from HuggingFace on first use. Runs 100% offline
+            after that. Change models via Settings inside the tray menu.
+          </p>
+          <div
+            className="rounded-xl overflow-hidden"
+            style={{
+              border: '1px solid var(--border)',
+              background: 'var(--s1)',
+            }}
+          >
+            <table className="w-full text-left" style={{ fontSize: '13px' }}>
+              <thead
+                style={{
+                  borderBottom: '1px solid var(--border)',
+                  background: 'var(--s2)',
+                }}
+              >
+                <tr>
+                  {['Model', 'Size', 'Speed', 'Accuracy'].map((h) => (
+                    <th
+                      key={h}
+                      className="px-6 py-4 font-mono"
+                      style={{
+                        fontSize: '11px',
+                        color: 'var(--text3)',
+                        letterSpacing: '0.06em',
+                        fontWeight: 600,
+                      }}
+                    >
+                      {h.toUpperCase()}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  {
+                    name: 'Tiny',
+                    size: '~75 MB',
+                    speed: 'Fastest',
+                    accuracy: 'Good',
+                    accent: false,
+                  },
+                  {
+                    name: 'Base',
+                    size: '~142 MB',
+                    speed: 'Fast',
+                    accuracy: 'Better',
+                    accent: true,
+                  },
+                  {
+                    name: 'Small',
+                    size: '~462 MB',
+                    speed: 'Medium',
+                    accuracy: 'Great',
+                    accent: false,
+                  },
+                  {
+                    name: 'Medium',
+                    size: '~1.5 GB',
+                    speed: 'Slower',
+                    accuracy: 'Best',
+                    accent: false,
+                  },
+                ].map(({ name, size, speed, accuracy, accent }) => (
+                  <tr
+                    key={name}
+                    style={{
+                      borderTop: '1px solid var(--border)',
+                      background: accent
+                        ? 'var(--s2)'
+                        : 'transparent',
+                    }}
+                  >
+                    <td className="px-6 py-4">
+                      <span
+                        style={{
+                          color: 'var(--text)',
+                          fontWeight: accent ? 600 : 400,
+                        }}
+                      >
+                        {name}
+                      </span>
+                      {accent && (
+                        <span
+                          className="tag-accent tag ml-3"
+                          style={{ fontSize: '9px', padding: '2px 6px' }}
+                        >
+                          Default
+                        </span>
+                      )}
+                    </td>
+                    <td
+                      className="px-6 py-4 font-mono"
+                      style={{ color: 'var(--text3)', fontSize: '12px' }}
+                    >
+                      {size}
+                    </td>
+                    <td className="px-6 py-4" style={{ color: 'var(--text2)' }}>
+                      {speed}
+                    </td>
+                    <td className="px-6 py-4" style={{ color: 'var(--text2)' }}>
+                      {accuracy}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* ─── Setup ─────────────────────────────────────────────────── */}
+        <section
+          className="max-w-6xl mx-auto px-6 py-24"
+          style={{ borderBottom: '1px solid var(--border)' }}
+        >
+          <div className="section-label mb-12">Setup</div>
+          <div className="max-w-2xl">
+            {[
+              [
+                'Download & install',
+                'Get the .dmg, open it, drag Zynthetix Voice.app to /Applications. No Node.js needed.',
+              ],
+              [
+                'First launch',
+                'Right-click the app → Open. Click Open in the security dialog. One time only.',
+              ],
+              [
+                'Download model',
+                'On first use the app downloads the Whisper base model (~142 MB) from HuggingFace.',
+              ],
+              [
+                'Grant permissions',
+                'Allow Microphone access and Accessibility access when prompted in System Settings.',
+              ],
+              [
+                'Start dictating',
+                'Click a text field, double-tap Right ⌥, speak naturally, double-tap again.',
+              ],
+            ].map(([step, desc], i, arr) => (
+              <div
+                key={step}
+                className="flex items-start gap-6"
+                style={{ paddingBottom: i < arr.length - 1 ? '32px' : 0 }}
+              >
+                <div className="flex-shrink-0 flex flex-col items-center">
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center font-mono"
+                    style={{
+                      background: 'var(--s2)',
+                      border: '1px solid var(--border2)',
+                      color: 'var(--text2)',
+                      fontSize: '12px',
+                    }}
+                  >
+                    {i + 1}
+                  </div>
+                  {i < arr.length - 1 && (
+                    <div
+                      className="w-px flex-1 mt-1"
+                      style={{ background: 'var(--border)', minHeight: '24px' }}
+                    />
+                  )}
+                </div>
+                <div className="pt-2.5">
+                  <p
+                    style={{
+                      fontSize: '15px',
+                      fontWeight: 600,
+                      color: 'var(--text)',
+                      marginBottom: '4px',
+                    }}
+                  >
+                    {step}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: '13px',
+                      color: 'var(--text2)',
+                      lineHeight: '1.7',
+                    }}
+                  >
+                    {desc}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="py-12 flex items-center justify-between text-[#5a5a65] text-xs font-medium">
-          <span>© {new Date().getFullYear()} Zynthetix</span>
-          <a href="https://github.com/Zynthetix/Zynthetix" target="_blank" rel="noopener noreferrer" className="hover:text-[#e8e8ea] transition-colors duration-200">
-            github.com/Zynthetix
+        {/* ─── Architecture ──────────────────────────────────────────── */}
+        <section
+          className="max-w-6xl mx-auto px-6 py-24"
+          style={{ borderBottom: '1px solid var(--border)' }}
+        >
+          <div className="section-label mb-10">Architecture</div>
+          <div
+            className="grid grid-cols-2 md:grid-cols-3 gap-px rounded-xl overflow-hidden"
+            style={{
+              border: '1px solid var(--border)',
+              background: 'var(--border)',
+            }}
+          >
+            {[
+              ['Electron', 'System tray & global hotkeys'],
+              ['whisper.cpp', 'Local transcription · Metal GPU'],
+              ['osascript', 'Accessibility text injection'],
+              ['SQLite', 'History & snippet storage'],
+              ['React + Vite', 'Settings & dashboard UI'],
+              ['Express', 'Local API server (port 7789)'],
+            ].map(([name, desc]) => (
+              <div
+                key={name}
+                className="px-6 py-5 bg-s1 hover:bg-s2 transition-colors duration-200"
+              >
+                <p
+                  style={{
+                    fontSize: '13px',
+                    fontWeight: 600,
+                    color: 'var(--text)',
+                    marginBottom: '4px',
+                  }}
+                >
+                  {name}
+                </p>
+                <p
+                  className="font-mono"
+                  style={{ fontSize: '11px', color: 'var(--text3)' }}
+                >
+                  {desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ─── Permissions ───────────────────────────────────────────── */}
+        <section
+          className="max-w-6xl mx-auto px-6 py-24"
+          style={{ borderBottom: '1px solid var(--border)' }}
+        >
+          <div className="section-label mb-10">Permissions</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {[
+              {
+                label: 'Microphone',
+                reason:
+                  'Capture audio while the recording pill is active. Only records when you activate the hotkey.',
+              },
+              {
+                label: 'Accessibility',
+                reason:
+                  'Simulate ⌘V to paste transcribed text into whichever app has focus.',
+              },
+            ].map(({ label, reason }) => (
+              <div
+                key={label}
+                className="card-glow rounded-xl p-7 flex items-start gap-4"
+              >
+                <div
+                  className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0"
+                  style={{
+                    background: 'var(--s2)',
+                    border: '1px solid var(--border2)',
+                    color: 'var(--text)',
+                  }}
+                >
+                  <ShieldAlert size={15} />
+                </div>
+                <div>
+                  <p
+                    style={{
+                      fontSize: '14px',
+                      fontWeight: 600,
+                      color: 'var(--text)',
+                      marginBottom: '6px',
+                    }}
+                  >
+                    {label}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: '13px',
+                      color: 'var(--text2)',
+                      lineHeight: '1.7',
+                    }}
+                  >
+                    {reason}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ─── Footer ────────────────────────────────────────────────── */}
+        <footer
+          className="max-w-6xl mx-auto px-6 py-10 flex items-center justify-between"
+          style={{ color: 'var(--text3)', fontSize: '12px' }}
+        >
+          <span className="font-mono">
+            © {new Date().getFullYear()} Zynthetix
+          </span>
+          <a
+            href="https://github.com/Zynthetix/zynthetix-voice"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 transition-colors duration-200 text-[var(--text3)] hover:text-[var(--text)]"
+          >
+            <Github size={13} /> github.com/Zynthetix
           </a>
         </footer>
-
       </main>
     </>
   );
